@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/23e44ce5-d322-46d0-b218-aec8630a9ac6/resourceGroups/cis/providers/Microsoft.Web/sites/cis-django",
+    "appService.deploySubpath": "."
+}
