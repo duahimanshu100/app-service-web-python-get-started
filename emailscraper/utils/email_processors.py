@@ -11,6 +11,7 @@ log = logging.getLogger(__name__)
 
 
 def email_processing():
+    print("process email")
     try:
         imap_client = ImapClient(settings.SCRAPING_EMAIL, settings.SCRAPING_PASSWORD)
         result, data = imap_client.search('(SINCE "20-SEP-2020")')
