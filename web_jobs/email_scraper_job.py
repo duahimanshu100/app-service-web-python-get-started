@@ -1,6 +1,7 @@
 SITE_PACKAGE_PATH = "D:\\home\\site\\wwwroot\\env\\Lib\\site-packages"
 CODE_PATH = "D:\\home\\site\\wwwroot"
-def email_scrapper():
+
+def setup_django():
     import sys
     import os
     sys.path.append(SITE_PACKAGE_PATH)
@@ -14,3 +15,11 @@ def email_scrapper():
         )
 
     django.setup()
+def email_scrapper():
+    print("Inside email scrapper web job")
+    setup_django()
+    print("Setup Django complete")
+    from emailscraper.utils.email_processors import email_processing
+    print("Imported email processing")
+    email_processing()
+    print("Comple email processing")
