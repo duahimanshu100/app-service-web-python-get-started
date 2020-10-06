@@ -43,8 +43,7 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    "questions.apps.QuestionsConfig",
-    "clinics.apps.ClinicsConfig",
+    "emailscraper.apps.EmailscraperConfig",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -133,7 +132,7 @@ SITE_ID = 1
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "oauth2_provider.contrib.rest_framework.OAuth2Authentication",
-    ),
+    )
 }
 
 OAUTH2_PROVIDER = {
@@ -144,6 +143,40 @@ OAUTH2_PROVIDER = {
 
 
 LOG_DIR = BASE_DIR + "/logs"
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    # Formatters ####################################################################
+    "formatters": {
+        "verbose": {
+            "format": "%(levelname)s %(asctime)s %(module)s "
+            "%(process)d %(name)s %(pathname)s %(funcName)s %(message)s"
+        }
+    },
+    # Handlers ####################################################################
+    "handlers": {
+        "file": {
+            "level": "INFO",
+            "class": "logging.FileHandler",
+            "formatter": "verbose",
+            "filename": LOG_DIR + "/log.log",
+        },
+        "questions": {
+            "level": "INFO",
+            "class": "logging.FileHandler",
+            # 'class':'logging.handlers.RotatingFileHandler',
+            # 'maxBytes': 1024 * 1024 * 10, #Max 10MB
+            "formatter": "verbose",
+            "filename": LOG_DIR + "/question.log",
+            # 'backupCount' : 10,
+        },
+    },
+    # Loggers ####################################################################
+    "loggers": {
+        "django": {"handlers": ["file"], "propagate": True, "level": "INFO"},
+        "questions": {"level": "INFO", "propagate": True, "handlers": ["questions"]},
+    },
+}
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
@@ -156,4 +189,4 @@ USER_NAME = "dbadmin"
 # celery
 CELERY_BROKER_URL = os.environ.get("REDIS_URL","redis://localhost:6379/0")
 CELERY_RESULT_BACKEND =  os.environ.get("REDIS_URL","redis://localhost:6379/0")
-# CELERY_IMPORTS = ()
+CELERY_IMPORTS = ("emailscraper.tasks",)

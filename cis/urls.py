@@ -39,8 +39,6 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-    path("", include("questions.urls")),
-    path("", include("clinics.urls")),
     path("o/", include("oauth2_provider.urls", namespace="oauth2_provider")),
     path("admin/", admin.site.urls),
     re_path(

@@ -47,10 +47,7 @@ htmlcov/
 nosetests.xml
 coverage.xml
 *.cover
-<<<<<<< HEAD
 *.py,cover
-=======
->>>>>>> Initial commit
 .hypothesis/
 .pytest_cache/
 
@@ -59,15 +56,10 @@ coverage.xml
 *.pot
 
 # Django stuff:
-<<<<<<< HEAD
 *.log
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
-=======
-local_settings.py
-db.sqlite3
->>>>>>> Initial commit
 
 # Flask stuff:
 instance/
@@ -105,8 +97,6 @@ __pypackages__/
 # Celery stuff
 celerybeat-schedule
 celerybeat.pid
-# celery beat schedule file
-celerybeat-schedule
 
 # SageMath parsed files
 *.sage.py
@@ -137,7 +127,3 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-
-.azure/
-.idea/
-.DS_STORE
