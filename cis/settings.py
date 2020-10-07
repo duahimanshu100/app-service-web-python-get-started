@@ -186,6 +186,8 @@ SCRAPING_PASSWORD = os.environ.get("SCRAPING_PASSWORD", "brics123@")
 IMAP_HOST = os.environ.get("IMAP_HOST", "outlook.office365.com")
 DATA_UNIT = "MB"
 USER_NAME = "dbadmin"
+FILTER_DOMAIN = 'FROM "@hotmail.com"'
+FILTER_SUBJECT = 'SUBJECT "Summary report for network"'
 # celery
 CELERY_BROKER_URL = os.environ.get("REDIS_URL","redis://localhost:6379/0")
 CELERY_RESULT_BACKEND =  os.environ.get("REDIS_URL","redis://localhost:6379/0")

@@ -14,6 +14,9 @@ class ImapClient:
         except Exception as e:
             log.error("Issue found in ImapClient class due to:", e)
 
-    def search(self, query):
-        result, data = self.imap.uid("search", query)
+    def search(self,  *args):
+        domain = args[0]
+        subject = args[1]
+        pre_date = args[2]
+        result, data = self.imap.uid("search", domain, subject, pre_date)
         return (result, data)

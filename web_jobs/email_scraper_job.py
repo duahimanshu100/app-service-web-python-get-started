@@ -23,3 +23,5 @@ def email_scrapper():
     print("Imported email processing")
     email_processing()
     print("Comple email processing")
+
+email_scrapper()

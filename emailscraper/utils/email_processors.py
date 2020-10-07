@@ -1,6 +1,6 @@
 import logging
 from django.conf import settings
-
+from cis.utils.date import get_previous_date_time
 from emailscraper.imap_client import ImapClient
 from emailscraper.parsers.summary_report_email_parser import SummaryReportEmailParser
 from emailscraper.utils.pre_processors import preprocess_network_usage, preprocess_application_usage, \
@@ -14,7 +14,11 @@ def email_processing():
     print("process email")
     try:
         imap_client = ImapClient(settings.SCRAPING_EMAIL, settings.SCRAPING_PASSWORD)
-        result, data = imap_client.search('(SINCE "20-SEP-2020")')
+        previous_date = get_previous_date_time()      
+        #result, data = imap_client.search(settings.FILTER_DOMAIN,'(SINCE "'+previous_date+'")',settings.FILTER_SUBJECT)
+        result, data = imap_client.search(settings.FILTER_DOMAIN,'(SINCE "20-SEP-2020")',settings.FILTER_SUBJECT)
+        
+        #result, data = imap_client.search('(SINCE "20-SEP-2020")')
         number_of_emails = len(data[0].split())
         for email_index in range(number_of_emails):
             latest_email_uid = data[0].split()[email_index]
